@@ -20,7 +20,7 @@ Initialize classes and render `template.php`:
 
 ```php
 <?php
-require('vendor/autoload.php');
+require 'vendor/autoload.php';
 
 use Rkulik\View\Renderer;
 use Rkulik\View\Validator;
