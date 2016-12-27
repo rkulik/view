@@ -5,10 +5,13 @@
         "php",
         "view"
     ],
+    "homepage": "https://github.com/rkulik/view",
+    "license": "MIT",
     "authors": [
         {
             "name": "René Kulik",
-            "email": "info@renekulik.de"
+            "email": "info@renekulik.de",
+            "homepage": "http://www.renekulik.de/"
         }
     ],
     "require": {
