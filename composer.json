@@ -29,7 +29,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Rkulik\\View\\Tests\\": "tests"
+            "Rkulik\\View\\Test\\": "tests"
         }
     }
 }

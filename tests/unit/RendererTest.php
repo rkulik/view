@@ -1,5 +1,5 @@
 <?php
-namespace Rkulik\View\Tests\Unit;
+namespace Rkulik\View\Test\Unit;
 
 use Rkulik\View\Exceptions\FileNotFoundException;
 use Rkulik\View\Exceptions\UnsupportedFormatException;
