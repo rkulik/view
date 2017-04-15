@@ -1,10 +1,8 @@
 <?php
-namespace Rkulik\View\Test\Unit;
+namespace Rkulik\View;
 
 use Rkulik\View\Exceptions\FileNotFoundException;
 use Rkulik\View\Exceptions\UnsupportedFormatException;
-use Rkulik\View\Renderer;
-use Rkulik\View\Validator;
 
 /**
  * Class RendererTest

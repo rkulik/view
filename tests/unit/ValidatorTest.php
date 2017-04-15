@@ -1,7 +1,5 @@
 <?php
-namespace Rkulik\View\Test\Unit;
-
-use Rkulik\View\Validator;
+namespace Rkulik\View;
 
 /**
  * Class ValidatorTest
