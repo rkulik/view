@@ -11,7 +11,7 @@ PHP 5.6+
 Via composer:
 
 ``` bash
-$ composer require rkulik/view
+$ composer require rkulik/view:dev-master
 ```
 
 ## Usage
@@ -47,5 +47,5 @@ echo $data;
 Run the tests with:
 
 ``` bash
-$ phpunit
+$ vendor/phpunit/phpunit/phpunit
 ```
