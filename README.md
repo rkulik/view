@@ -41,11 +41,3 @@ Handle `data` inside `template.php`:
 
 echo $data;
 ```
-
-## Testing
-
-Run the tests with:
-
-``` bash
-$ vendor/phpunit/phpunit/phpunit
-```
