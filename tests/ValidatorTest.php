@@ -1,5 +1,5 @@
 <?php
-namespace Rkulik\View\Test\Unit;
+namespace Rkulik\View\Test;
 
 use Rkulik\View\Validator;
 
@@ -37,6 +37,6 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateFileThrowsUnsupportedFormatException()
     {
-        $this->validator->validateFile(__DIR__ . '/../mocks/invalidFile.txt');
+        $this->validator->validateFile(__DIR__ . '/mocks/invalidFile.txt');
     }
 }

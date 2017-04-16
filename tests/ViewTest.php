@@ -1,5 +1,5 @@
 <?php
-namespace Rkulik\View\Test\Unit;
+namespace Rkulik\View\Test;
 
 use Rkulik\View\Renderer;
 use Rkulik\View\View;
@@ -36,7 +36,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->validFile = __DIR__ . '/../mocks/validFile.php';
+        $this->validFile = __DIR__ . '/mocks/validFile.php';
 
         $this->view = new View($this->renderer);
     }

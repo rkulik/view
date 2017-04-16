@@ -1,5 +1,5 @@
 <?php
-namespace Rkulik\View\Test\Unit;
+namespace Rkulik\View\Test;
 
 use Rkulik\View\Exceptions\FileNotFoundException;
 use Rkulik\View\Exceptions\UnsupportedFormatException;
@@ -56,7 +56,7 @@ class RendererTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderThrowsUnsupportedFormatException()
     {
-        $invalidFile = __DIR__ . '/../mocks/invalidFile.txt';
+        $invalidFile = __DIR__ . '/mocks/invalidFile.txt';
 
         $this->validator->expects($this->once())
             ->method('validateFile')
@@ -71,7 +71,7 @@ class RendererTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderFile()
     {
-        $response = $this->renderer->render(__DIR__ . '/../mocks/validFile.php');
+        $response = $this->renderer->render(__DIR__ . '/mocks/validFile.php');
         $this->assertEquals('This is a valid file.', $response);
     }
 }
