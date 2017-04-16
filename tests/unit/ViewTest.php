@@ -1,5 +1,8 @@
 <?php
-namespace Rkulik\View;
+namespace Rkulik\View\Test\Unit;
+
+use Rkulik\View\Renderer;
+use Rkulik\View\View;
 
 /**
  * Class ViewTest
