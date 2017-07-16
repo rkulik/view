@@ -4,7 +4,7 @@ Simple PHP view-renderer.
 
 ## Requirements
 
-PHP 5.6+
+PHP 7.1+
 
 ## Installation
 
@@ -16,22 +16,17 @@ $ composer require rkulik/view:dev-master
 
 ## Usage
 
-Initialize classes and render `template.php`:
+Initialize view factory and render `template.php`:
 
 ```php
 <?php
 require 'vendor/autoload.php';
 
-use Rkulik\View\Renderer;
-use Rkulik\View\Validator;
-use Rkulik\View\View;
-
-$renderer = new Renderer(new Validator);
-$view = new View($renderer);
+$viewFactory = new \Rkulik\View\ViewFactory();
 
 $data = 'example string';
 
-echo $view->make('template.php')->with(compact('data'));
+echo $viewFactory->make('template.php')->with(compact('data'));
 ```
 
 Handle `data` inside `template.php`:

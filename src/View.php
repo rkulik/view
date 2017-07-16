@@ -1,5 +1,8 @@
 <?php
+
 namespace Rkulik\View;
+
+use Rkulik\View\Renderers\RendererInterface;
 
 /**
  * Class View
@@ -12,42 +15,35 @@ class View
     /**
      * @var string
      */
-    protected $file;
+    private $file;
 
     /**
      * @var array
      */
-    protected $data = [];
+    private $data;
 
     /**
-     * @var Renderer
+     * @var RendererInterface
      */
-    protected $renderer;
+    private $renderer;
 
     /**
-     * @param Renderer $renderer
+     * @param RendererInterface $renderer
+     * @param string $file
+     * @param array $data
      */
-    public function __construct(Renderer $renderer)
+    public function __construct(RendererInterface $renderer, string $file, array $data = [])
     {
         $this->renderer = $renderer;
-    }
-
-    /**
-     * @param string $file
-     * @return View
-     */
-    public function make($file)
-    {
         $this->file = $file;
-
-        return $this;
+        $this->data = $data;
     }
 
     /**
      * @param array $data
      * @return View
      */
-    public function with(array $data)
+    public function with(array $data): self
     {
         $this->data = \array_merge($this->data, $data);
 
@@ -57,16 +53,15 @@ class View
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->render();
     }
 
     /**
      * @return string
-     * @throws Exceptions\RenderException
      */
-    private function render()
+    private function render(): string
     {
         return $this->renderer->render($this->file, $this->data);
     }

@@ -1,26 +1,28 @@
 <?php
-namespace Rkulik\View;
+
+namespace Rkulik\View\Renderers;
 
 use Exception;
 use Rkulik\View\Exceptions\RenderException;
+use Rkulik\View\Validators\ValidatorInterface;
 
 /**
  * Class Renderer
- * @package Rkulik\View\Renderer
+ * @package Rkulik\View\Renderers
  *
  * @author René Kulik <info@renekulik.de>
  */
-class Renderer
+class Renderer implements RendererInterface
 {
     /**
-     * @var Validator
+     * @var ValidatorInterface
      */
-    protected $validator;
+    private $validator;
 
     /**
-     * @param Validator $validator
+     * @param ValidatorInterface $validator
      */
-    public function __construct(Validator $validator)
+    public function __construct(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
@@ -30,12 +32,10 @@ class Renderer
      * @param array $__data
      * @return string
      * @throws RenderException
-     * @throws \Rkulik\View\Exceptions\FileNotFoundException
-     * @throws \Rkulik\View\Exceptions\UnsupportedFormatException
      */
-    public function render($__file, array $__data = [])
+    public function render(string $__file, array $__data = []): string
     {
-        $this->validator->validateFile($__file);
+        $this->validator->validate($__file);
 
         \ob_start();
 
@@ -50,4 +50,4 @@ class Renderer
 
         return \trim(\ob_get_clean());
     }
-} 
+}

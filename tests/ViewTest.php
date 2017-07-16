@@ -1,12 +1,13 @@
 <?php
+
 namespace Rkulik\View\Test;
 
-use Rkulik\View\Renderer;
+use Rkulik\View\Renderers\RendererInterface;
 use Rkulik\View\View;
 
 /**
  * Class ViewTest
- * @package Rkulik\View\Tests\Unit
+ * @package Rkulik\View\Test
  *
  * @author René Kulik <info@renekulik.de>
  */
@@ -18,7 +19,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     private $view;
 
     /**
-     * @var Renderer|\PHPUnit_Framework_MockObject_MockObject
+     * @var RendererInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     private $renderer;
 
@@ -30,39 +31,30 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function setUp()
+    protected function setUp(): void
     {
-        $this->renderer = $this->getMockBuilder(Renderer::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        parent::setUp();
+
+        $this->renderer = $this->createMock(RendererInterface::class);
 
         $this->validFile = __DIR__ . '/mocks/validFile.php';
 
-        $this->view = new View($this->renderer);
+        $this->view = new View($this->renderer, $this->validFile);
     }
 
     /**
-     *
+     * @dataProvider withDataProvider
+     * @param array $data
      */
-    public function testMakeReturnsView()
+    public function testWithReturnsView(array $data): void
     {
-        $response = $this->view->make($this->validFile);
-        $this->assertInstanceOf(View::class, $response);
+        $this->assertInstanceOf(View::class, $this->view->with($data));
     }
 
     /**
      *
      */
-    public function testWithReturnsView()
-    {
-        $response = $this->view->with([]);
-        $this->assertInstanceOf(View::class, $response);
-    }
-
-    /**
-     *
-     */
-    public function testEchoingReturnsString()
+    public function testEchoingReturnsString(): void
     {
         $expected = 'This is a valid file.';
 
@@ -71,6 +63,24 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             ->with($this->identicalTo($this->validFile), $this->identicalTo([]))
             ->will($this->returnValue($expected));
 
-        $this->assertEquals($expected, (string)$this->view->make($this->validFile));
+        $this->assertSame($expected, (string)$this->view);
+    }
+
+    /**
+     * @return array
+     */
+    public function withDataProvider(): array
+    {
+        return [
+            [
+                []
+            ],
+            [
+                ['key' => 'value']
+            ],
+            [
+                ['key1' => 'value1', 'key2' => 'value2']
+            ],
+        ];
     }
 } 

@@ -1,32 +1,33 @@
 <?php
-namespace Rkulik\View;
+
+namespace Rkulik\View\Validators;
 
 use Rkulik\View\Exceptions\FileNotFoundException;
 use Rkulik\View\Exceptions\UnsupportedFormatException;
 
 /**
  * Class Validator
- * @package Rkulik\View
+ * @package Rkulik\View\Validators
  *
  * @author René Kulik <info@renekulik.de>
  */
-class Validator
+class Validator implements ValidatorInterface
 {
-    const PHP_EXTENSION = 'php';
+    public const PHP_EXTENSION = 'php';
 
     /**
      * @param string $file
      * @throws FileNotFoundException
      * @throws UnsupportedFormatException
      */
-    public function validateFile($file)
+    public function validate(string $file): void
     {
         if (!\is_file($file)) {
             throw new FileNotFoundException();
         }
 
-        $pathArray = \pathinfo($file);
-        if (!isset($pathArray['extension']) || $pathArray['extension'] !== self::PHP_EXTENSION) {
+        $pathInfo = \pathinfo($file);
+        if (!isset($pathInfo['extension']) || $pathInfo['extension'] !== self::PHP_EXTENSION) {
             throw new UnsupportedFormatException();
         }
     }
