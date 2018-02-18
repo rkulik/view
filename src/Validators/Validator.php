@@ -9,7 +9,7 @@ use Rkulik\View\Exceptions\UnsupportedFormatException;
  * Class Validator
  * @package Rkulik\View\Validators
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class Validator implements ValidatorInterface
 {

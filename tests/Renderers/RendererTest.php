@@ -11,7 +11,7 @@ use Rkulik\View\Validators\ValidatorInterface;
  * Class RendererTest
  * @package Rkulik\View\Renderers\Test
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class RendererTest extends \PHPUnit_Framework_TestCase
 {

@@ -8,7 +8,7 @@ use Rkulik\View\Renderers\RendererInterface;
  * Class View
  * @package Rkulik\View
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class View
 {

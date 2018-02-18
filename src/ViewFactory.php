@@ -9,7 +9,7 @@ use Rkulik\View\Validators\Validator;
  * Class ViewFactory
  * @package Rkulik\View
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class ViewFactory
 {

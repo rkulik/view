@@ -10,7 +10,7 @@ use Rkulik\View\Validators\Validator;
  * Class ValidatorTest
  * @package Rkulik\View\Validators\Test
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {

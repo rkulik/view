@@ -10,7 +10,7 @@ use Rkulik\View\Validators\ValidatorInterface;
  * Class Renderer
  * @package Rkulik\View\Renderers
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class Renderer implements RendererInterface
 {

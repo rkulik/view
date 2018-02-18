@@ -8,7 +8,7 @@ use Exception;
  * Class UnsupportedFormatException
  * @package Rkulik\View\Exceptions
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class UnsupportedFormatException extends Exception
 {

@@ -9,7 +9,7 @@ use Rkulik\View\View;
  * Class ViewTest
  * @package Rkulik\View\Test
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class ViewTest extends \PHPUnit_Framework_TestCase
 {

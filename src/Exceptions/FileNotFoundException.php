@@ -8,7 +8,7 @@ use Exception;
  * Class FileNotFoundException
  * @package Rkulik\View\Exceptions
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class FileNotFoundException extends Exception
 {

@@ -9,7 +9,7 @@ use Rkulik\View\ViewFactory;
  * Class ViewFactoryTest
  * @package Rkulik\View\Test
  *
- * @author René Kulik <info@renekulik.de>
+ * @author René Kulik <rene@kulik.io>
  */
 class ViewFactoryTest extends \PHPUnit_Framework_TestCase
 {
