@@ -43,9 +43,9 @@ class Renderer implements RendererInterface
 
         try {
             include $__file;
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             \ob_end_clean();
-            throw new RenderException($e);
+            throw new RenderException();
         }
 
         return \trim(\ob_get_clean());
