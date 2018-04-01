@@ -68,7 +68,7 @@ If you discover any security-related issues, please email rene@kulik.io instead 
 
 ## Credits
 
-- [René Kulik][https://github.com/rkulik]
+- [René Kulik](https://github.com/rkulik)
 
 ## License
 
