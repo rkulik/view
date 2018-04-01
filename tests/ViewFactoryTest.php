@@ -11,7 +11,7 @@ use Rkulik\View\ViewFactory;
  *
  * @author René Kulik <rene@kulik.io>
  */
-class ViewFactoryTest extends \PHPUnit_Framework_TestCase
+class ViewFactoryTest extends BaseTestCase
 {
     /**
      * @var ViewFactory
@@ -19,19 +19,11 @@ class ViewFactoryTest extends \PHPUnit_Framework_TestCase
     private $viewFactory;
 
     /**
-     * @var string
-     */
-    private $validFile;
-
-    /**
      *
      */
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->validFile = __DIR__ . '/mocks/validFile.php';
-
         $this->viewFactory = new ViewFactory();
     }
 
@@ -40,6 +32,9 @@ class ViewFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testMake(): void
     {
-        $this->assertInstanceOf(View::class, $this->viewFactory->make($this->validFile));
+        $this->assertInstanceOf(
+            View::class,
+            $this->viewFactory->make($this->getMockFilePath(self::FILE_WHICH_IS_VALID))
+        );
     }
 }

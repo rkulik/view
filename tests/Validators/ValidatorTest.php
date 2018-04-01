@@ -2,8 +2,7 @@
 
 namespace Rkulik\View\Validators\Test;
 
-use Rkulik\View\Exceptions\FileNotFoundException;
-use Rkulik\View\Exceptions\UnsupportedFormatException;
+use Rkulik\View\Test\BaseTestCase;
 use Rkulik\View\Validators\Validator;
 
 /**
@@ -12,25 +11,12 @@ use Rkulik\View\Validators\Validator;
  *
  * @author René Kulik <rene@kulik.io>
  */
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends BaseTestCase
 {
-    private const INVALID_FILE = __DIR__ . '/../mocks/invalidFile.txt';
-    private const NON_EXISTING_FILE = 'nonExistingFile.php';
-
     /**
      * @var Validator
      */
     private $validator;
-
-    /**
-     * @var string
-     */
-    private $invalidFile;
-
-    /**
-     * @var string
-     */
-    private $nonExistingFile;
 
     /**
      *
@@ -38,33 +24,35 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->invalidFile = self::INVALID_FILE;
-        $this->nonExistingFile = self::NON_EXISTING_FILE;
-
         $this->validator = new Validator();
     }
 
     /**
-     * @dataProvider validateDataProvider
-     * @param string $exception
-     * @param string $file
+     * @expectedException \Rkulik\View\Exceptions\FileNotFoundException
+     * @throws \Rkulik\View\Exceptions\FileNotFoundException
+     * @throws \Rkulik\View\Exceptions\UnsupportedFormatException
      */
-    public function testValidateThrowsException(string $exception, string $file): void
+    public function testValidateFailsByFileNotFound()
     {
-        $this->expectException($exception);
-
-        $this->validator->validate($file);
+        $this->validator->validate($this->getMockFilePath(self::FILE_WHICH_DOES_NOT_EXIST));
     }
 
     /**
-     * @return array
+     * @expectedException \Rkulik\View\Exceptions\UnsupportedFormatException
+     * @throws \Rkulik\View\Exceptions\FileNotFoundException
+     * @throws \Rkulik\View\Exceptions\UnsupportedFormatException
      */
-    public function validateDataProvider(): array
+    public function testValidateFailsByUnsupportedFormat()
     {
-        return [
-            [FileNotFoundException::class, self::NON_EXISTING_FILE],
-            [UnsupportedFormatException::class, self::INVALID_FILE],
-        ];
+        $this->validator->validate($this->getMockFilePath(self::FILE_WITH_UNSUPPORTED_EXTENSION));
+    }
+
+    /**
+     * @throws \Rkulik\View\Exceptions\FileNotFoundException
+     * @throws \Rkulik\View\Exceptions\UnsupportedFormatException
+     */
+    public function testValidateDoesNotFail()
+    {
+        $this->validator->validate($this->getMockFilePath(self::FILE_WHICH_IS_VALID));
     }
 }

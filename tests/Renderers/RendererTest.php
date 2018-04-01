@@ -2,9 +2,8 @@
 
 namespace Rkulik\View\Renderers\Test;
 
-use Rkulik\View\Exceptions\FileNotFoundException;
-use Rkulik\View\Exceptions\UnsupportedFormatException;
 use Rkulik\View\Renderers\Renderer;
+use Rkulik\View\Test\BaseTestCase;
 use Rkulik\View\Validators\ValidatorInterface;
 
 /**
@@ -13,36 +12,12 @@ use Rkulik\View\Validators\ValidatorInterface;
  *
  * @author René Kulik <rene@kulik.io>
  */
-class RendererTest extends \PHPUnit_Framework_TestCase
+class RendererTest extends BaseTestCase
 {
-    private const VALID_FILE = __DIR__ . '/../mocks/validFile.php';
-    private const INVALID_FILE = __DIR__ . '/../mocks/invalidFile.php';
-    private const NON_EXISTING_FILE = 'nonExistingFile.php';
-
     /**
      * @var Renderer
      */
     private $renderer;
-
-    /**
-     * @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $validator;
-
-    /**
-     * @var string
-     */
-    private $validFile;
-
-    /**
-     * @var string
-     */
-    private $invalidFile;
-
-    /**
-     * @var string
-     */
-    private $nonExistingFile;
 
     /**
      *
@@ -51,49 +26,27 @@ class RendererTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->validFile = self::VALID_FILE;
-        $this->invalidFile = self::INVALID_FILE;
-        $this->nonExistingFile = self::NON_EXISTING_FILE;
-
-        $this->validator = $this->createMock(ValidatorInterface::class);
-
-        $this->renderer = new Renderer($this->validator);
+        /** @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject $validator */
+        $validator = $this->createMock(ValidatorInterface::class);
+        $this->renderer = new Renderer($validator);
     }
 
     /**
-     * @dataProvider renderDataProvider
-     * @param string $exception
-     * @param string $file
+     * @expectedException \Rkulik\View\Exceptions\RenderException
      */
-    public function testRenderThrowsException(string $exception, $file): void
+    public function testRenderFailsByException()
     {
-        $this->expectException($exception);
-
-        $this->validator->expects($this->once())
-            ->method('validate')
-            ->with($this->identicalTo($file))
-            ->will($this->throwException(new $exception()));
-
-        $this->renderer->render($file);
-
+        $this->renderer->render($this->getMockFilePath(self::FILE_WHICH_THROWS_AN_EXCEPTION));
     }
 
     /**
-     *
+     * @throws \Rkulik\View\Exceptions\RenderException
      */
     public function testRenderFile(): void
     {
-        $this->assertSame('This is a valid file.', $this->renderer->render($this->validFile));
-    }
-
-    /**
-     * @return array
-     */
-    public function renderDataProvider(): array
-    {
-        return [
-            [FileNotFoundException::class, self::NON_EXISTING_FILE],
-            [UnsupportedFormatException::class, self::INVALID_FILE],
-        ];
+        $this->assertSame(
+            'This is a valid file.',
+            $this->renderer->render($this->getMockFilePath(self::FILE_WHICH_IS_VALID))
+        );
     }
 }
