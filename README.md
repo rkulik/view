@@ -1,6 +1,6 @@
 # view
 
-Simple PHP view-renderer.
+Lightweight PHP view-renderer.
 
 - [Requirements](#requirements)
 - [Install](#install)

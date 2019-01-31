@@ -1,6 +1,6 @@
 {
     "name": "rkulik/view",
-    "description": "Simple PHP view-renderer",
+    "description": "Lightweight PHP view-renderer",
     "keywords": [
         "rkulik",
         "php",
@@ -12,8 +12,7 @@
         {
             "name": "René Kulik",
             "email": "rene@kulik.io",
-            "homepage": "http://www.kulik.io/",
-            "role": "Developer"
+            "homepage": "https://www.kulik.io/"
         }
     ],
     "require": {
